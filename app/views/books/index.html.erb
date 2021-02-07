@@ -1,6 +1,11 @@
-<h1></h1>
+<!--Title・Body一覧-->
+<h1>Books</h1>
+<% @books.each do |book| %>
+  <p><%= book.title %><%= book.body %></p>
+<% end %>
 
-<h2>New book</h2>　<!--新規投稿フォーム（books#new）-->
+<!--新規投稿フォーム（books#new）-->
+<h2>New book</h2>
 <%= form_with model:@book, url:'/books', local:true do |f| %>
   <%= f.label :title %>  <!--ラベル機能（タグ付け）-->
   <%= f.text_field :title %>

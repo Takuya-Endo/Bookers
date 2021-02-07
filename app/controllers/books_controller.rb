@@ -5,6 +5,8 @@ class BooksController < ApplicationController
   end
 
   def index
+    # Title、Bodyの一覧を表示
+    @books = Book.all
 
     # newアクション（新規投稿フォーム）は、indexアクション（一覧表示「/books」）同一ページ内
     @book = Book.new  # indexアクション（一覧表示「/books」）実行時に空のモデルを代入
