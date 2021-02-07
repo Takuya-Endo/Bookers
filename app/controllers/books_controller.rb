@@ -14,8 +14,13 @@ class BooksController < ApplicationController
 
   def create  # 新規投稿フォームの入力内容をデータベースへ追加
     book = Book.new(book_params)
-    book.save
-    redirect_to book_path(book.id)  # <!--名前付きルート「as:'book'」→books#show→show.html.erb-->
+    if book.save  #titleとbodyのpresenceがtrueの場合は、saveとredirect
+      redirect_to book_path(book.id)  # <!--名前付きルート「as:'book'」→books#show→show.html.erb-->
+    else  #presenceがfalseであれば、エラー表示と共にindexアクション再実行
+      @books ||= Book.all  #その際@booksが空の場合はBook.allを改めて代入、それ以外は何もしない
+      @book = book #save予定だったブロック変数bookをindex.htmlのif文で使用するためインスタンス変数@bookに代入
+      render action: :index
+    end
   end
 
   def show  # 個別レコード表示
