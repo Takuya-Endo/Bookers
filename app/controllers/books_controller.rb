@@ -15,8 +15,7 @@ class BooksController < ApplicationController
   def create  # 新規投稿フォームの入力内容をデータベースへ追加
     book = Book.new(book_params)
     book.save
-    # 仮のリダイレクト先
-    redirect_to books_path
+    redirect_to book_path(book.id)  # <!--名前付きルート「as:'book'」→books#show→show.html.erb-->
   end
 
   def show  # 個別レコード表示
@@ -30,15 +29,13 @@ class BooksController < ApplicationController
   def update
     book = Book.find(params[:id])
     book.update(book_params)
-    # 仮のリダイレクト先
-    redirect_to books_path
+    redirect_to book_path(book.id)  # <!--名前付きルート「as:'book'」→books#show→show.html.erb-->
   end
 
   def destroy
     book = Book.find(params[:id])
     book.destroy
-    # 仮のリダイレクト先
-    redirect_to books_path
+    redirect_to books_path  # <!--名前付きルート「as:'books'」→books#index→index.html.erb-->
   end
 
   private

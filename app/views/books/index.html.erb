@@ -6,7 +6,7 @@
     <%= book.body %>
     <%= link_to "show", book_path(book.id) %>  <!--名前付きルート「as:'book'」-->
     <%= link_to "edit", edit_book_path(book.id) %>  <!--名前付きルート「as:'edit_book'」-->
-    <%= link_to "destroy", book_path(book.id), method: :delete %>  <!--HTTPメソッド「delete」を指定-->
+    <%= link_to "destroy", book_path(book.id), method: :delete, "data-confirm"=>"Are you sure?" %>  <!--HTTPメソッド「delete」を指定-->
   </p>
 <% end %>
 

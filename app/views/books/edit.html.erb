@@ -4,5 +4,7 @@
   <%= f.text_field :title %>
   <%= f.label :body %>  <!--ラベル機能（タグ付け）-->
   <%= f.text_area :body %>
+  <span><%= link_to "Show", book_path(@book.id) %></span>  <!--名前付きルート「as:'book'」→books#show→show.html.erb-->
+  <span><%= link_to "Back", books_path %></span>  <!--名前付きルート「as:'books'」→books#index→index.html.erb-->
   <%= f.submit 'Update Book' %> <!--books#update、PATCHメソッドへ-->
 <% end %>
