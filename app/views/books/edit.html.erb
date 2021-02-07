@@ -1,2 +1,8 @@
-<h1>Books#edit</h1>
-<p>Find me in app/views/books/edit.html.erb</p>
+<h1>Editing Book</h1>
+<%= form_with model:@book, local:true do |f| %>
+  <%= f.label :title %>  <!--ラベル機能（タグ付け）-->
+  <%= f.text_field :title %>
+  <%= f.label :body %>  <!--ラベル機能（タグ付け）-->
+  <%= f.text_area :body %>
+  <%= f.submit 'Update Book' %> <!--books#update、PATCHメソッドへ-->
+<% end %>

@@ -12,17 +12,33 @@ class BooksController < ApplicationController
     @book = Book.new  # indexアクション（一覧表示「/books」）実行時に空のモデルを代入
   end
 
-    def create  # 新規投稿フォームの入力内容をデータベースへ追加
-      book = Book.new(book_params)
-      book.save
-      # 仮のリダイレクト先
-      redirect_to books_path
-    end
+  def create  # 新規投稿フォームの入力内容をデータベースへ追加
+    book = Book.new(book_params)
+    book.save
+    # 仮のリダイレクト先
+    redirect_to books_path
+  end
 
-  def show
+  def show  # 個別レコード表示
+    @book = Book.find(params[:id])
   end
 
   def edit
+    @book = Book.find(params[:id])
+  end
+
+  def update
+    book = Book.find(params[:id])
+    book.update(book_params)
+    # 仮のリダイレクト先
+    redirect_to books_path
+  end
+
+  def destroy
+    book = Book.find(params[:id])
+    book.destroy
+    # 仮のリダイレクト先
+    redirect_to books_path
   end
 
   private
