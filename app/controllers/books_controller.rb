@@ -34,8 +34,13 @@ class BooksController < ApplicationController
 
   def update
     book = Book.find(params[:id])
-    book.update(book_params)
-    redirect_to book_path(book.id)  # <!--名前付きルート「as:'book'」→books#show→show.html.erb-->
+    if book.update(book_params)
+      flash[:notice] = "Book was successfully updated."
+      redirect_to book_path(book.id)  # <!--名前付きルート「as:'book'」→books#show→show.html.erb-->
+    else
+      @book = book
+      render action: :edit
+    end
   end
 
   def destroy
