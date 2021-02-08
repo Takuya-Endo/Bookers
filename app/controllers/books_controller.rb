@@ -15,6 +15,7 @@ class BooksController < ApplicationController
   def create  # 新規投稿フォームの入力内容をデータベースへ追加
     book = Book.new(book_params)
     if book.save  #titleとbodyのpresenceがtrueの場合は、saveとredirect
+      flash[:notice] = "Book was successfully created."  #サクセスメッセージ
       redirect_to book_path(book.id)  # <!--名前付きルート「as:'book'」→books#show→show.html.erb-->
     else  #presenceがfalseであれば、エラー表示と共にindexアクション再実行
       @books ||= Book.all  #その際@booksが空の場合はBook.allを改めて代入、それ以外は何もしない
