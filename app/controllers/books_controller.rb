@@ -46,6 +46,7 @@ class BooksController < ApplicationController
   def destroy
     book = Book.find(params[:id])
     book.destroy
+    flash[:notice] = "Book was successfully destroyed."
     redirect_to books_path  # <!--名前付きルート「as:'books'」→books#index→index.html.erb-->
   end
 

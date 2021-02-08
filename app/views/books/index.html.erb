@@ -1,3 +1,10 @@
+<!--サクセスメッセージ-->
+<% if flash[:notice] %>
+  <p id="notice">
+    <%= flash[:notice] %>
+  </p>
+<% end %>
+
 <!--Title・Body一覧-->
 <h1>Books</h1>
 <table>
@@ -21,11 +28,17 @@
 <!--新規投稿フォーム（books#new）-->
 <h2>New book</h2>
 <% if @book.errors.any? %>
-  <ul>
-    <% @book.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@book.errors.count, "error") %>
+      prohibited this book from being saved:
+    </h2>
+    <ul>
+      <% @book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>
 
 <%= form_with model:@book, url:'/books', local:true do |f| %>
